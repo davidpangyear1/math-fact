@@ -1,0 +1,116 @@
+-- nHr as the number of non-negative integral sum equation
+How many solutions are there in this equation?
+x_1 + x_2 + ... + x_n = r where x_i>=0, r>=0 are integers
+The question is equivalent to:
+To divide r balls (in a line) into n regions (can be empty), how many ways can we do that?
+
+Example 1:
+o|oo|ooo
+It has divides r=6 balls into n=3 regions, which corresponds to the solution
+(1, 2, 3) in x_1 + x_2 + x_3 = 6
+
+Example 2:
+||o|ooo|||oooo
+It has divides r=8 balls into n=7 regions, which corresponds to the solution
+(0, 0, 1, 3, 0, 0, 4) in x_1 + x_2 + x_3 + x_4 + x_5 + x_6 + x_7 = 8
+
+
+-- General Solution
+To solve it generally, we can reform the question into this:
+How many solutions are there in this equation?
+(x_1 + 1) + (x_2 + 1) + ... + (x_n + 1) = r + n where x_i>=0, r>=0 are integers
+or, equivalently, this:
+y_1 + y_2 + ... + y_n = r + n where y_i>=1, r>=0 are integers
+
+Now, this is equivalent to divide (r+n) balls (in a line) into n regions (MUST NOT be empty)
+In other words, we need to place (n-1) bars between balls, and there are (r+n-1) places to choose
+
+So, nHr = (r+n-1)C(n-1)
+
+-- Use nHr to solve repeatable choice problem
+Another application on nHr is the "repeatable choice problem".
+
+Suppose there are n types of alphabet, and r boxes to be filled in. (Alphabets reusable. Order does not matter.)
+If we restrict that the alphabets are not reusable, then the answer is surely nCr
+But what if we accept reusing alphabets?
+Then, we are actually dividing r boxes into n regions!
+Thus, the answer is nHr
+
+Let us take an example to explain this:
+Suppose there are n=6 alphabets, ABCDEF, and r=4 boxes, 1234, to be filled in. (Alphabets reusable. Order does not matter.)
+Consider a possible output CCAD, it is equivalent to ACCD since order does not matter.
+Then we can express ACCD as dividing 1234 into 6 regions
+1||23|4||
+Region A contains 1
+Region B contains nothing
+Region C contains 2,3
+...
+
+One should note that, n<r, n=r, n>r are possible cases.
+
+-- Summary:
+1) nHr is equivalent to:
+(i)
+Number of solutions in:
+x_1 + x_2 + ... + x_n = r where x_i>=0 are integers
+given r>=0 is an integer
+
+(ii) 
+Number of ways that:
+n alphabets are chosen into r boxes. Alphabets reusable. Order does not matter.
+
+(iii)
+Number of ways that:
+r balls in a line are divided into n regions, regions can be empty
+
+(iv) (This case can be solved by C easily, don't need to memorize it)
+r+n balls in a line are divided into n regions, regions can NOT be empty
+
+2) nHr can be evaluated to
+(i) (n-1) bar placed into (r+n-1) spaces
+(r+n-1)C(n-1)
+
+(ii) For easier calculation,
+(r+n-1)Cr
+
+-- Exercises
+Q1:
+5 identical lights are supposed to have 1 of 3 colors -- red, green or blue
+An engineer is making test cases that only care about the NUMBER of colors
+How many test cases are there?
+
+Q2:
+How many integral solutions are there in:
+x_1 + x_2 + ... + x_9 = 100 where x_i >= i
+
+Q1Ans:
+This is equivalent to solve 
+r + g + b = 5
+thus r=5, n=3
+3H5 = (3+5-1)C5 = 7C5 = 21 cases
+
+alternative:
+This is also equivalent to writing alphabets r,g,b into 5 boxes. (Alphabets reusable. Order does not matter.)
+So, 3 alphabets is chosen into 5 boxes, repeatable.
+3H5=21 cases
+
+alternative:
+Arrange 5 lights in a line,
+and restrict that the order must be all reds, then all greens, then all blues.
+That means, no red lights after green lights, and no green lights after blue lights.
+Then we can divide 5 lights in line into 3 regions, which gives out 3H5=21
+
+Q2Ans:
+let y_i = x_i - i, it is a bijection of course,
+then the equation becomes
+y_1 + y_2 + ... + y_9 = 55 where y_i >=0
+
+Thus, the answer is 55H9
+(55+9-1)C9, find it by calculator
+
+-- Reference:
+http://johnng.inscyber.net/apm/john_applied_math_II.htm
+=> Note on permutation and combination (Chinese, doc, 86k)
+
+-- Other link(s):
+https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics)
