@@ -1,4 +1,4 @@
--- nHr as the number of non-negative integral sum equation
+-- nHr as the number of solutions in non-negative integral sum equation
 How many solutions are there in this equation?
 x_1 + x_2 + ... + x_n = r where x_i>=0, r>=0 are integers
 The question is equivalent to:
@@ -30,14 +30,14 @@ So, nHr = (r+n-1)C(n-1)
 -- Use nHr to solve repeatable choice problem
 Another application on nHr is the "repeatable choice problem".
 
-Suppose there are n types of alphabet, and r boxes to be filled in. (Alphabets reusable. Order does not matter.)
+Suppose there are n types of alphabet, and r boxes to be filled in. (Alphabets reusable/omittable. Order does not matter.)
 If we restrict that the alphabets are not reusable, then the answer is surely nCr
 But what if we accept reusing alphabets?
 Then, we are actually dividing r boxes into n regions!
 Thus, the answer is nHr
 
 Let us take an example to explain this:
-Suppose there are n=6 alphabets, ABCDEF, and r=4 boxes, 1234, to be filled in. (Alphabets reusable. Order does not matter.)
+Suppose there are n=6 alphabets, ABCDEF, and r=4 boxes, 1234, to be filled in. (Alphabets reusable/omittable. Order does not matter.)
 Consider a possible output CCAD, it is equivalent to ACCD since order does not matter.
 Then we can express ACCD as dividing 1234 into 6 regions
 1||23|4||
@@ -57,7 +57,7 @@ given r>=0 is an integer
 
 (ii) 
 Number of ways that:
-n alphabets are chosen into r boxes. Alphabets reusable. Order does not matter.
+n alphabets are chosen into r boxes. Alphabets reusable/omittable. Order does not matter.
 
 (iii)
 Number of ways that:
@@ -90,7 +90,7 @@ thus r=5, n=3
 3H5 = (3+5-1)C5 = 7C5 = 21 cases
 
 alternative:
-This is also equivalent to writing alphabets r,g,b into 5 boxes. (Alphabets reusable. Order does not matter.)
+This is also equivalent to writing alphabets r,g,b into 5 boxes. (Alphabets reusable/omittable. Order does not matter.)
 So, 3 alphabets is chosen into 5 boxes, repeatable.
 3H5=21 cases
 
@@ -114,3 +114,5 @@ http://johnng.inscyber.net/apm/john_applied_math_II.htm
 
 -- Other link(s):
 https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics)
+This question is formulated better:
+putting n indistinguishable balls into r distinguishable bins
